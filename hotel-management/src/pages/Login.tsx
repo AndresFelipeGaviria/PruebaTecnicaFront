@@ -1,21 +1,29 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import useAuthStore  from "../store/authStore";
 
 const Login = () => {
+
+  const { login, error, token } = useAuthStore();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    
-    // Simulamos autenticación y redirigimos a Home
-    if (email === "admin@hotel.com" && password === "123456") {
-      navigate("/home");
-    } else {
-      alert("Credenciales incorrectas");
-    }
+      await login(email, password);
+      if(localStorage.getItem("token")) navigate("/home");
   };
+
+  useEffect(() => {
+    if (token) {
+      navigate("/home");
+    }else {
+      console.log("Error en login:",
+      error);
+    }
+  }, [token, error]);
+
 
   return (
     <div className="flex justify-center items-center h-screen bg-gray-100">
