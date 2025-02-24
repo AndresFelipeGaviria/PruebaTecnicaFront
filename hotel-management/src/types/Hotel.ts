@@ -6,8 +6,9 @@ export interface HotelResponse {
     address:      string;
     isActive:     boolean;
     createdAt:    string;
+    city:         string;
     updatedAt:    null | string;
-    rooms:        any[];
+    rooms:        Room[];
     reservations: any[];
 }
 

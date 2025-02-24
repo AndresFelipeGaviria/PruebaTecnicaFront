@@ -1,6 +1,5 @@
-import { Hotel, Room } from '../types';
+import { Room } from '../types';
 import { HotelResponse } from '../types/Hotel';
-import ReservationList from '../pages/Reservations';
 
 type HotelCardProps = {
   hotel: HotelResponse;
@@ -76,7 +75,6 @@ const HotelCard = ({
         ))}
       </div>
       </div>
-      <ReservationList reservations={hotel.reservations} /> {/* Lista de reservas */}
     </div>
   );
 };

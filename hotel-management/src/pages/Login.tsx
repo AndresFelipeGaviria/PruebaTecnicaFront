@@ -15,14 +15,6 @@ const Login = () => {
       if(localStorage.getItem("token")) navigate("/home");
   };
 
-  useEffect(() => {
-    if (token) {
-      navigate("/home");
-    }else {
-      console.log("Error en login:",
-      error);
-    }
-  }, [token, error]);
 
 
   return (

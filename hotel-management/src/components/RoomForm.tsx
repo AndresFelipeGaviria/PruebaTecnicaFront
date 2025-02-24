@@ -11,13 +11,14 @@ const RoomForm = ({ initialData, onSubmit, onClose }: RoomFormProps) => {
   const [type, setType] = useState(initialData?.roomType ?? '');
   const [roomId ] = useState(initialData?.roomId ?? '');
   const [location, setLocation] = useState(initialData?.location ?? '');
+  const [capacity, setCapacity] = useState(initialData?.capacity);
   const [baseCost, setBaseCost] = useState(initialData?.baseCost || 0);
   const [taxes, setTaxes] = useState(initialData?.taxes || 0);
   const [enabled, setEnabled] = useState(initialData?.isAvailable ?? true);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    onSubmit({ roomId: roomId, roomType: type, baseCost, taxes, isAvailable: enabled, location });
+    onSubmit({ roomId: roomId, capacity:capacity ?? 0, roomType: type, baseCost, taxes, isAvailable: enabled, location });
   };
 
   return (
@@ -33,6 +34,16 @@ const RoomForm = ({ initialData, onSubmit, onClose }: RoomFormProps) => {
               type="text"
               value={type}
               onChange={(e) => setType(e.target.value)}
+              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
+              required
+            />
+          </div>
+          <div className="mb-4">
+            <label className="block text-sm font-medium text-gray-700">capacidad</label>
+            <input
+              type="number"
+              value={capacity}
+              onChange={(e) => setCapacity(Number(e.target.value))}
               className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
               required
             />

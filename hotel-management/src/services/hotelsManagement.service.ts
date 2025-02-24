@@ -1,7 +1,6 @@
 import api from "./api";
 import { API_SERVICES } from "../utils/constants";
 import { Hotel, UpdateHotel } from "../types";
-import { CreateHotel } from '../types/Hotel';
 
 
 const createHotel = async (hotel: Omit<Hotel, 'hotelId' | 'rooms'>): Promise<any> => {
@@ -27,9 +26,15 @@ const getHotels = async (): Promise<any> => {
       return data.data ; 
 }
 
+const getHotelById = async (id: string): Promise<any> => {
+  const  data  = await api.get(API_SERVICES.HOTELS.GET_HOTEL(id));
+  return data.data ; 
+}
+
 
   export default {
     createHotel,
     updatedHotelId,
-    getHotels
+    getHotels,
+    getHotelById
   }

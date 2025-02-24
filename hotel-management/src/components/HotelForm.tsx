@@ -9,12 +9,14 @@ type HotelFormProps = {
 
 const HotelForm = ({ initialData, onSubmit, onClose }: HotelFormProps) => {
   const [name, setName] = useState(initialData?.name || '');
+  const [city, setCity] = useState(initialData?.address || '');
   const [address, setAddress] = useState(initialData?.address || '');
+
   const [isActive, setIsActive] = useState(initialData?.isActive ?? true);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    onSubmit({ name, address,  isActive });
+    onSubmit({ name, city, address,  isActive });
   };
 
   return (
@@ -30,6 +32,16 @@ const HotelForm = ({ initialData, onSubmit, onClose }: HotelFormProps) => {
               type="text"
               value={name}
               onChange={(e) => setName(e.target.value)}
+              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
+              required
+            />
+          </div>
+          <div className="mb-4">
+            <label className="block text-sm font-medium text-gray-700">Ciudad</label>
+            <input
+              type="text"
+              value={city}
+              onChange={(e) => setCity(e.target.value)}
               className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
               required
             />

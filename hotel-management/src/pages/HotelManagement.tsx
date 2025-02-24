@@ -12,14 +12,16 @@ const HotelManagement = () => {
     useHotelStore();
   const [isHotelModalOpen, setIsHotelModalOpen] = useState(false);
   const [isRoomModalOpen, setIsRoomModalOpen] = useState(false);
-  const [selectedHotel, setSelectedHotel] = useState<Hotel | undefined>(undefined);
+  const [selectedHotel, setSelectedHotel] = useState< Hotel | undefined>(undefined);
   const [selectedRoom, setSelectedRoom] = useState<Room | null>(null);
 
   const handleCreateHotel = (hotel: Omit<Hotel, 'hotelId' | 'rooms'>) => {
     try {
       addHotel(hotel);
       setIsHotelModalOpen(false);
-      getHotels();
+      setTimeout(() => {
+        getHotels();
+        }, 800);
     }catch(err){
       console.error(err);
     }
@@ -40,8 +42,15 @@ const HotelManagement = () => {
   };
 
   const handleAddRoom = (hotelId: string, room: Omit<Room,'roomId'>) => {
-    addRoom(hotelId, room);
-    setIsRoomModalOpen(false);
+    try {
+      addRoom(hotelId, room);
+      setIsRoomModalOpen(false);
+      setTimeout(() => {
+        getHotels();
+        }, 800);
+      }catch(err){
+        console.error(err);
+      }
   };
 
   const handleUpdateRoom = (roomId: string, updatedRoom: Omit<Room, 'roomId'>) => {
@@ -79,7 +88,7 @@ const HotelManagement = () => {
         </button>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          { hotels?.length && hotels?.map((hotel) => (
+          { hotels?.map((hotel) => (
             <HotelCard
               key={hotel.hotelId}
               hotel={hotel}
@@ -126,7 +135,7 @@ const HotelManagement = () => {
                 handleAddRoom(selectedHotel.hotelId, room);
               }
             }}
-            onClose={() => setIsRoomModalOpen(false)}
+            onClose={() => {setIsRoomModalOpen(false); setSelectedRoom(null)}}
           />
         )}
       </div>
