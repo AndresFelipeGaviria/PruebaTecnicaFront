@@ -3,7 +3,7 @@ import { API_SERVICES } from "../utils/constants";
 import { Room } from '../types/index';
 
 
-const createRoom = async (hotelId: string, room: Omit<Room, 'roomId'>): Promise<any> => {
+export const createRoom = async (hotelId: string, room: Omit<Room, 'roomId'>): Promise<any> => {
     try {
       const  data  = await api.post(API_SERVICES.ROOMS.CREATE_ROOM(hotelId), room );
       return data.data ;
@@ -12,7 +12,7 @@ const createRoom = async (hotelId: string, room: Omit<Room, 'roomId'>): Promise<
     }
 }
 
-const updatedRoomId = async (roomId: string, room: Omit<Room, 'roomId'>): Promise<any> => {
+export const updatedRoomId = async (roomId: string, room: Omit<Room, 'roomId'>): Promise<any> => {
     try {
       const  data  = await api.put(API_SERVICES.ROOMS.UPDATE_ROOM(roomId), room );
       return data.data ;
@@ -21,14 +21,4 @@ const updatedRoomId = async (roomId: string, room: Omit<Room, 'roomId'>): Promis
     }
 }
 
-const getHotels = async (): Promise<any> => {
-      const  data  = await api.get(API_SERVICES.HOTELS.GET_HOTELS);
-      return data.data ; 
-}
 
-
-  export default {
-    createRoom,
-    updatedRoomId,
-    getHotels
-  }

@@ -1,5 +1,5 @@
 import { create } from 'zustand';
-import Reservations from '../services/reservation.service';
+import { getAllReservations } from '../services/reservation.service';
 import {  ReservationResponse } from '../types/reservation';
 
 type UserStore = {
@@ -20,7 +20,7 @@ const useReservationStore = create<UserStore>((set) => ({
     set({ loading: true, error: null });
     try {
      
-      const reservations = await Reservations.getAllReservations();
+      const reservations = await getAllReservations();
 
       set({ reservations, loading: false, error: null });
     } catch (err) {

@@ -1,6 +1,6 @@
 import { create } from 'zustand';
 import { HotelResponse } from '../types/Hotel';
-import UserHotels from '../services/hotel.service';
+import { createReservation, searchHotels } from '../services/hotel.service';
 import { ReservationRequest, SearchHotels } from '../types';
 
 type UserStore = {
@@ -26,7 +26,7 @@ const useUserStore = create<UserStore>((set) => ({
     set({ loading: true, error: null });
     try {
      
-      const filteredHotels = await UserHotels.searchHotels(filter);
+      const filteredHotels = await searchHotels(filter);
 
       set({ filteredHotels, loading: false, error: null });
     } catch (err) {
@@ -37,7 +37,7 @@ const useUserStore = create<UserStore>((set) => ({
 
   createReservation: async ( reservation: ReservationRequest ) => {
     try {
-      await UserHotels.createReservation( reservation );
+      await createReservation( reservation );
       set({ loading: false, error: null });
     } catch (err) {
       console.error(err);

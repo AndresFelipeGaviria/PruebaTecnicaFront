@@ -1,8 +1,8 @@
 import { create } from 'zustand';
 import {  HotelResponse } from '../types/Hotel';
 import { Hotel, Reservation, Room, UpdateHotel } from '../types';
-import HotelServices from '../services/hotelsManagement.service';
-import RoomService from '../services/room.service';
+import {createHotel, getHotelById, getHotels, updatedHotelId} from '../services/hotelsManagement.service';
+import { createRoom, updatedRoomId } from '../services/room.service';
 
 
 type HotelStore = {
@@ -30,7 +30,7 @@ const useHotelStore = create<HotelStore>((set) => ({
 
   addHotel: async(hotel) =>{
     try{
-        await HotelServices.createHotel(hotel);
+        await createHotel(hotel);
         set({ loading: false, error: null });
     }catch(err) {
         console.error(err);
@@ -41,7 +41,7 @@ const useHotelStore = create<HotelStore>((set) => ({
   getHotels: async() =>{
     set({ hotels: null, loading: false, error: null });
     try{
-       const hotels = await HotelServices.getHotels();
+       const hotels = await getHotels();
         set({ hotels, loading: false, error: null });
     }catch(err) {
         console.error(err);
@@ -52,7 +52,7 @@ const useHotelStore = create<HotelStore>((set) => ({
   getHotelById: async(id: string) =>{
     set({ hotel: null, loading: false, error: null });
     try{
-       const hotel = await HotelServices.getHotelById(id);
+       const hotel = await getHotelById(id);
         set({ hotel, loading: false, error: null });
     }catch(err) {
         console.error(err);
@@ -62,7 +62,7 @@ const useHotelStore = create<HotelStore>((set) => ({
 
   updateHotel: async(id, updatedHotel) =>{
     try{
-         await HotelServices.updatedHotelId(id, updatedHotel);
+         await updatedHotelId(id, updatedHotel);
          set({loading: false, error: null });
      }catch(err) {
          console.error(err);
@@ -75,7 +75,7 @@ const useHotelStore = create<HotelStore>((set) => ({
 
   addRoom: async(hotelId, room) =>{
     try{
-         await RoomService.createRoom(hotelId, room);
+         await createRoom(hotelId, room);
          set({loading: false, error: null });
      }catch(err) {
          console.error(err);
@@ -86,7 +86,7 @@ const useHotelStore = create<HotelStore>((set) => ({
 
   updateRoom: async(roomId, updatedRoom) =>{
     try{
-         await RoomService.updatedRoomId(roomId, updatedRoom);
+         await updatedRoomId(roomId, updatedRoom);
          set({loading: false, error: null });
      }catch(err) {
          console.error(err);
