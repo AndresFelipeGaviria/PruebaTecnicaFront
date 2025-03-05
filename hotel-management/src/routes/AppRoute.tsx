@@ -1,6 +1,5 @@
 import { lazy, Suspense } from "react";
 import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
-import useAuthStore from "../store/authStore";
 import ProtectedRoute from "./ProtectedRoute";
 import LogoutButton from "../components/LogoutButton";
 
@@ -15,7 +14,7 @@ const Home = lazy(() => import("../pages/Home"));
 
 
 const AppRouter = () => {
-  const { token } = useAuthStore();
+
   return (
     <Router>
       <LogoutButton />
