@@ -50,7 +50,7 @@ const AppRouter = () => {
           />
 
    
-          <Route path="/login" element={token ? <Navigate to="/hotels" /> : <Login />} />
+          <Route path="/login" element={<Login />} />
           <Route path="/hotels/:id" element={<HotelDetails />} />
           <Route path="/reservations/:hotelId/:roomId" element={<ReservationForm />} />
 
