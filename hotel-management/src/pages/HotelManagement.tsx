@@ -3,7 +3,6 @@ import useHotelStore from '../store/hotelStore';
 import HotelForm from '../components/HotelForm';
 import HotelCard from '../components/HotelCard';
 import RoomForm from '../components/RoomForm';
-import { CreateHotel, HotelResponse } from '../types/Hotel';
 import { Hotel, Room, UpdateHotel } from '../types';
 
 

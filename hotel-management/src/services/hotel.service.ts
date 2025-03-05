@@ -2,13 +2,14 @@ import { ReservationRequest, SearchHotels } from "../types";
 import { API_SERVICES } from "../utils/constants";
 import api from "./api";
 
-
-const searchHotels = async (filters: SearchHotels): Promise<any> => {
-    const response = await api.get( API_SERVICES.USER_SEARCH.HOTEL, { params: filters });
+const searchHotels = async (filters: SearchHotels | null): Promise<any> => {
+    const response = await api.get(
+        API_SERVICES.USER_SEARCH.HOTEL,
+        filters ? { params: filters } : undefined
+    );
     return response.data;
-  };
+};
   
-
 
 const createReservation = async (reservation: ReservationRequest): Promise<any> => {
     try {

@@ -6,10 +6,8 @@ function App() {
     <div className="min-h-screen">
       <Loading />
       <AppRouter />
-      {/* Resto de tu aplicación */}
     </div>
   );
- 
 }
 
 export default App;

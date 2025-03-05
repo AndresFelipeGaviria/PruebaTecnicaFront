@@ -1,7 +1,5 @@
 import { create } from 'zustand';
-import { HotelResponse } from '../types/Hotel';
 import Reservations from '../services/reservation.service';
-import { ReservationRequest, SearchHotels } from '../types';
 import {  ReservationResponse } from '../types/reservation';
 
 type UserStore = {

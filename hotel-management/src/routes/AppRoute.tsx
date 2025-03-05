@@ -2,6 +2,7 @@ import { lazy, Suspense } from "react";
 import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
 import useAuthStore from "../store/authStore";
 import ProtectedRoute from "./ProtectedRoute";
+import LogoutButton from "../components/LogoutButton";
 
 
 const Login = lazy(() => import("../pages/Login"));
@@ -17,6 +18,7 @@ const AppRouter = () => {
   const { token } = useAuthStore();
   return (
     <Router>
+      <LogoutButton />
       <Suspense fallback={<div>Cargando...</div>}>
         <Routes>
 
@@ -47,7 +49,7 @@ const AppRouter = () => {
             }
           />
 
-          {/* Rutas públicas */}
+   
           <Route path="/login" element={token ? <Navigate to="/hotels" /> : <Login />} />
           <Route path="/hotels/:id" element={<HotelDetails />} />
           <Route path="/reservations/:hotelId/:roomId" element={<ReservationForm />} />

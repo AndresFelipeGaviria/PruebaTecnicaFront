@@ -49,7 +49,7 @@ const HotelCard = ({
       </div>
       <div className="mt-4">
         <h3 className="text-lg font-semibold text-gray-800">Habitaciones</h3>
-        <div className="mt-2 overflow-y-auto max-h-96"> {/* Scroll aquí */}
+        <div className="mt-2 overflow-y-auto max-h-96"> 
         {hotel.rooms.map((room: Room) => (
           <div key={room.roomId} className="mt-2 p-2 border border-gray-200 rounded-lg">
             <p className="text-gray-700">

@@ -1,4 +1,3 @@
-// api.ts
 import axios from 'axios';
 import  {useLoadingStore}  from '../store/loadingStore';
 
@@ -11,17 +10,17 @@ api.interceptors.request.use((config) => {
   if (token) {
     config.headers.Authorization = `Bearer ${token}`;
   }
-  useLoadingStore.getState().setLoading(true); // Activar loading
+  useLoadingStore.getState().setLoading(true); 
   return config;
 });
 
 api.interceptors.response.use(
   (response) => {
-    useLoadingStore.getState().setLoading(false); // Desactivar loading
+    useLoadingStore.getState().setLoading(false); 
     return response;
   },
   (error) => {
-    useLoadingStore.getState().setLoading(false); // Desactivar loading en error
+    useLoadingStore.getState().setLoading(false); 
     return Promise.reject(error);
   }
 );

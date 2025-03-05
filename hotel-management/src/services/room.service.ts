@@ -1,7 +1,5 @@
 import api from "./api";
 import { API_SERVICES } from "../utils/constants";
-import { Hotel, UpdateHotel } from "../types";
-import { CreateHotel } from '../types/Hotel';
 import { Room } from '../types/index';
 
 

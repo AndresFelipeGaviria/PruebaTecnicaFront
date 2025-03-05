@@ -12,7 +12,7 @@ export interface Hotel {
 
 export interface Room {
   roomId:      string;
-  roomType:    string; // Ejemplo: "Single", "Double", "Suite"
+  roomType:    string; 
   baseCost:    number;
   taxes:       number;
   isAvailable: boolean;
@@ -34,7 +34,7 @@ export interface Reservation {
 export interface Guest {
   firstName: string;
   lastName: string;
-  birthDate: string; // Formato ISO
+  birthDate: string; 
   gender: string;
   documentType: string;
   documentNumber: string;
@@ -46,10 +46,10 @@ export interface EmergencyContact {
 }
 
 export interface SearchHotels {
-  checkIn?: string;
-  checkOut?: string;
-  guests?: number;
-  city?: string;
+  checkIn?: string | null;
+  checkOut?: string | null;
+  guests?: number | null;
+  city?: string | null;
 }
 
 export interface ReservationRequest {
